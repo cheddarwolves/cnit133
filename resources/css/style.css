@@ -99,3 +99,89 @@ section {
 	}
 }
 
+/* Forms */
+form label, input {
+	display: block;
+}
+
+form input {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.5;
+	border: 1px solid rgba(29,37,45,0.25);
+	padding: 0.5rem 1rem;
+	border-radius: 0.25rem;
+	margin-bottom: 1rem;
+}
+
+label {
+	font-weight: 700;
+	margin-bottom: 0.25rem;
+}
+
+/* Buttons */
+
+button {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.5;
+	color: #ffffff;
+	background-color: rgba(29,37,45,0.5);
+	border: 1px solid transparent;
+	padding: 0.5rem 1rem;
+	border-radius: 0.25rem;
+	display: inline-block;
+	transition: all 150ms ease-in;
+}
+
+button:hover {
+	opacity: 0.8;
+}
+
+button.primary {
+	background-color: #E56A54;
+}
+
+
+/* Callouts */
+
+.callout {
+	background-color: rgba(29,37,45,0.1);
+	border-radius: 0.25rem;
+	padding: 1rem;
+}
+
+
+/* Flex containers */
+.flex {
+	display: flex;
+}
+
+#form, #results {
+	width: 50%;
+}
+
+/* Tables */
+
+table {
+	border-collapse: separate;
+	border-spacing: 0.25rem;
+	border: 1px solid rgba(29,37,45,0.25);
+}
+
+table th, table td {
+	padding: 0.25rem;
+	border: 1px dotted rgba(29,37,45,0.25);
+	width: 10rem;
+}
+
+table .alignRight {
+	text-align: right;
+}
+
+/* Misc */
+.hide {
+	display: none;
+}

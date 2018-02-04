@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Homework 2, Extra credit: exchange rates</title>
+  
+  <meta name="description" content="Katie Riley's CNIT 133 Homework 2: Basic Operations">
+
+  <link href="./resources/css/reset.css" type="text/css" rel="stylesheet">
+  <link href="./resources/css/style.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script>
+
+    function convertUSD() {
+
+      // Define exchange rates
+
+      var BritishPound = 0.77521;
+      var CanadianDollar = 1.34461;
+      var Euro = 0.88754;
+      var JapaneseYen = 109.350;
+      var MexicanPeso = 18.2806;
+
+      // Get user input
+
+      var inputUSD = document.getElementById('amountUSD').value;
+      inputUSD = parseFloat(inputUSD);
+
+      // Helper to reformat to USD
+      var displayAsUSD = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2,
+      });
+
+      // Show results
+
+      document.getElementById('BritishPound').innerHTML = displayAsUSD.format(inputUSD * BritishPound);
+      document.getElementById('CanadianDollar').innerHTML = displayAsUSD.format(inputUSD * CanadianDollar);
+      document.getElementById('Euro').innerHTML = displayAsUSD.format(inputUSD * Euro);
+      document.getElementById('JapaneseYen').innerHTML = displayAsUSD.format(inputUSD * JapaneseYen);
+      document.getElementById('MexicanPeso').innerHTML = displayAsUSD.format(inputUSD * MexicanPeso);
+
+    }
+
+  </script>
+
+  <script> 
+    $(document).ready(function(){
+        $("#help").click(function(){
+            $("#helpInfo").slideToggle("slow");
+        });
+    });
+  </script>
+
+</head>
+
+<body>
+
+  <header class="container">
+    <h1>CNIT 133 Homework 2: Basic Operations</h1>
+    <ul>
+      <li>
+        <a href="hw2-1.html">
+          Part 1: document.write statements
+        </a>
+      </li>
+      <li>
+        <a href="hw2-2.html">
+          Part 2: input three integers
+        </a>
+      </li>
+      <li>
+        <a href="hw2-3.html">
+          Part 3: jQuery
+        </a>
+      </li>
+      <li>
+        <a href="hw2-4.html">
+          Part 4: calculation table
+        </a>
+      </li>
+      <li>
+        Extra credit: exchange rates
+      </li>
+    </ul>
+  </header>
+
+  <main class="container">
+
+    <h2>Extra credit: exchange rates</h2>
+
+    <div class="flex">
+
+      <div id="form">
+
+        <h3><a href="#" id="help">Click to Show/Hide Instructions</a></h3>
+        <div id="helpInfo" class="hide">
+          <p>The foreign exchange rates on June 6, 2017.</p>
+          <p>Enter a dollar amount in the field below to see the corresponding foreign exchange values.</p>
+        </div>
+
+        <form>
+          <label for="amountUSD">Amount of US Dollars:</label>
+          <input type="number" id="amountUSD" name="amountUSD" placeholder="&#36;" autofocus>
+          <button class="primary" type="button" onclick="convertUSD()">Convert</button>
+          <button type="button" onclick="window.location.reload();">Reset</button>
+        </form>
+
+      </div>
+
+      <div id="results" class="callout">
+
+        <h3 id="resultsHeader">Results:</h3>
+        <table>
+          <tr>
+            <td>British Pound</td><td class="alignRight" id="BritishPound"></td>
+          </tr>
+          <tr>
+            <td>Canadian Dollar</td><td class="alignRight" id="CanadianDollar"></td>
+          </tr>
+          <tr>
+            <td>Euro</td><td class="alignRight" id="Euro"></td>
+          </tr>
+          <tr>
+            <td>Japanese Yen</td><td class="alignRight" id="JapaneseYen"></td>
+          </tr>
+          <tr>
+            <td>Mexican Peso</td><td class="alignRight" id="MexicanPeso"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+
+  </main>
+
+</body>
+</html>

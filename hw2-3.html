@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Homework 2, Part 3: jQuery</title>
+  
+  <meta name="description" content="Katie Riley's CNIT 133 Homework 2: Basic Operations">
+
+  <link href="./resources/css/reset.css" type="text/css" rel="stylesheet">
+  <link href="./resources/css/style.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Script to fade answers using jQuery -->
+  <script>
+    $(document).ready(function(){
+        $("#fade").click(function(){
+            $("#results").fadeTo("slow", 0.15);
+        });
+    });
+  </script>
+
+  <script>
+
+    function displayIntegerTypeResults() {
+
+      // Turn user's number inputs into variables
+
+      var number1 = document.forms["numInputs"].elements["number1"].value;
+      var number2 = document.forms["numInputs"].elements["number2"].value;
+      var number3 = document.forms["numInputs"].elements["number3"].value;
+      var number4 = document.forms["numInputs"].elements["number4"].value;
+      var number5 = document.forms["numInputs"].elements["number5"].value;
+
+      // Convert inputs to integers
+
+      number1 = parseInt(number1);
+      number2 = parseInt(number2);
+      number3 = parseInt(number3);
+      number4 = parseInt(number4);
+      number5 = parseInt(number5);
+
+      // Declare and initialize empty counters
+
+      var countOfPositiveIntegers = 0;
+      var countOfNegativeIntegers = 0;
+      var countOfZeros = 0;
+
+      // Create function to check integer type and increment counter
+
+      function countIntegerType(integer) {
+
+        if (integer > 0) {
+          countOfPositiveIntegers++;
+        } else if (integer < 0) {
+          countOfNegativeIntegers++;
+        } else if (integer === 0) {
+          countOfZeros++;
+        }
+
+      } 
+
+      // Run function on each input
+
+      countIntegerType(number1);
+      countIntegerType(number2);
+      countIntegerType(number3);
+      countIntegerType(number4);
+      countIntegerType(number5);
+
+      // Show count results on page
+
+      document.getElementById('pos').innerHTML = 'Positive numbers: ' + countOfPositiveIntegers;
+      document.getElementById('neg').innerHTML = 'Negative numbers: ' + countOfNegativeIntegers;
+      document.getElementById('zero').innerHTML = 'Zeros: ' + countOfZeros;
+
+   }
+
+  </script>
+
+</head>
+
+<body>
+
+  <header class="container">
+    <h1>CNIT 133 Homework 2: Basic Operations</h1>
+    <ul>
+      <li>
+        <a href="hw2-1.html">
+          Part 1: document.write statements
+        </a>
+      </li>
+      <li>
+        <a href="hw2-2.html">
+          Part 2: input three integers
+        </a>
+      </li>
+      <li>
+        Part 3: jQuery
+      </li>
+      <li>
+        <a href="hw2-4.html">
+          Part 4: calculation table
+        </a>
+      </li>
+      <li>
+        <a href="hw2-ec.html">
+          Extra credit: exchange rates
+        </a>
+      </li>
+    </ul>
+  </header>
+
+  <main class="container">
+
+    <h2>Part 3: jQuery</h2>
+
+    <div class="flex">
+      <div id="form">
+
+        <form name="numInputs">
+          <label for="number1">Number 1</label>
+          <input type="number" id="number1" name="number1" autofocus>
+          <label for="number2">Number 2</label>
+          <input type="number" id="number2" name="number2">
+          <label for="number3">Number 3</label>
+          <input type="number" id="number3" name="number3">
+          <label for="number4">Number 4</label>
+          <input type="number" id="number4" name="number4">
+          <label for="number5">Number 5</label>
+          <input type="number" id="number5" name="number5">
+          <button class="primary" type="button" onclick="displayIntegerTypeResults()">Submit</button>
+          <button id="fade" type="button">Fade</button>
+          <button type="button" onclick="window.location.reload();">Reset</button>
+        </form>
+
+      </div>
+
+      <div id="results" class="callout">
+        <h3 id="resultsHeader">Results:</h3>
+        <ul>
+          <li id="pos">
+            Positive numbers: 0
+          </li>
+          <li id="neg">
+            Negative numbers: 0
+          </li>
+          <li id="zero">
+            Zeros: 0
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>

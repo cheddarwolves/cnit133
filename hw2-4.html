@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Homework 2, Part 4: calculation table</title>
+  
+  <meta name="description" content="Katie Riley's CNIT 133 Homework 2: Basic Operations">
+
+  <link href="./resources/css/reset.css" type="text/css" rel="stylesheet">
+  <link href="./resources/css/style.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <header class="container">
+    <h1>CNIT 133 Homework 2: Basic Operations</h1>
+    <ul>
+      <li>
+        <a href="hw2-1.html">
+          Part 1: document.write statements
+        </a>
+      </li>
+      <li>
+        <a href="hw2-2.html">
+          Part 2: input three integers
+        </a>
+      </li>
+      <li>
+        <a href="hw2-3.html">
+          Part 3: jQuery
+        </a>
+      </li>
+      <li>
+        Part 4: calculation table
+      </li>
+      <li>
+        <a href="hw2-ec.html">
+          Extra credit: exchange rates
+        </a>
+      </li>
+    </ul>
+  </header>
+
+  <main class="container">
+
+    <h2>Part 4: calculation table</h2>
+
+    <script>
+
+      document.write("<table><tr><th>Number</th><th>Square</th><th>Cube</th></tr>");
+      document.write("<tr class='alignRight'><td>" + 1 + "</td>" + "<td>" + Math.pow(1,2) + "</td>" + "<td>" + Math.pow(1,3) + "</td></tr>"); 
+      document.write("<tr class='alignRight'><td>" + 2 + "</td>" + "<td>" + Math.pow(2,2) + "</td>" + "<td>" + Math.pow(2,3) + "</td></tr>"); 
+      document.write("<tr class='alignRight'><td>" + 3 + "</td>" + "<td>" + Math.pow(3,2) + "</td>" + "<td>" + Math.pow(3,3) + "</td></tr>"); 
+      document.write("<tr class='alignRight'><td>" + 4 + "</td>" + "<td>" + Math.pow(4,2) + "</td>" + "<td>" + Math.pow(4,3) + "</td></tr>");
+      document.write("<tr class='alignRight'><td>" + 5 + "</td>" + "<td>" + Math.pow(5,2) + "</td>" + "<td>" + Math.pow(5,3) + "</td></tr>");
+      document.write("<tr class='alignRight'><td>" + 6 + "</td>" + "<td>" + Math.pow(6,2) + "</td>" + "<td>" + Math.pow(6,3) + "</td></tr>");
+      document.write("</table>"); 
+
+    </script>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Homework 2, Part 2: input three integers</title>
+  
+  <meta name="description" content="Katie Riley's CNIT 133 Homework 2: Basic Operations">
+
+  <link href="./resources/css/reset.css" type="text/css" rel="stylesheet">
+  <link href="./resources/css/style.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+  <script>
+
+    function doMath() {
+
+      var number1, number2, number3, sum, average, product, smallest, largest;
+      number1 = document.forms["numInputs"].elements["number1"].value;
+      number2 = document.forms["numInputs"].elements["number2"].value;
+      number3 = document.forms["numInputs"].elements["number3"].value;
+
+      number1 = parseInt(number1);
+      number2 = parseInt(number2);
+      number3 = parseInt(number3);
+
+      sum = number1 + number2 + number3;
+      average = (number1 + number2 + number3) / 3;
+      product = number1 * number2 * number3;
+      smallest = Math.min(number1, number2, number3);
+      largest = Math.max(number1, number2, number3);
+
+      document.getElementById('sum').innerHTML = 'Sum: ' + sum;
+      document.getElementById('average').innerHTML = 'Average: ' + average;
+      document.getElementById('product').innerHTML = 'Product: ' + product;
+      document.getElementById('smallest').innerHTML = 'Smallest: ' + smallest;
+      document.getElementById('largest').innerHTML = 'Largest: ' + largest;
+
+    }
+    
+  </script>
+
+</head>
+
+<body>
+
+  <header class="container">
+    <h1>CNIT 133 Homework 2: Basic Operations</h1>
+    <ul>
+      <li>
+        <a href="hw2-1.html">
+          Part 1: document.write statements
+        </a>
+      </li>
+      <li>
+        Part 2: input three integers
+      </li>
+      <li>
+        <a href="hw2-3.html">
+          Part 3: jQuery
+        </a>
+      </li>
+      <li>
+        <a href="hw2-4.html">
+          Part 4: calculation table
+        </a>
+      </li>
+      <li>
+        <a href="hw2-ec.html">
+          Extra credit: exchange rates
+        </a>
+      </li>
+    </ul>
+  </header>
+
+  <main class="container">
+
+    <h2>Part 2: input three integers</h2>
+
+    <div class="flex">
+      <div id="form">
+        <form name="numInputs">
+          <label for="number1">Number 1</label>
+          <input type="number" id="number1" name="number1" autofocus>
+          <label for="number2">Number 2</label>
+          <input type="number" id="number2" name="number2">
+          <label for="number3">Number 3</label>
+          <input type="number" id="number3" name="number3">
+          <button class="primary" type="button" onclick="doMath()">Submit</button>
+          <button type="button" onclick="window.location.reload();">Reset</button>
+        </form>
+      </div>
+
+      <div id="results" class="callout">
+        <h3 id="resultsHeader">Results:</h3>
+        <ul>
+          <li id="sum">
+            Sum:
+          </li>
+          <li id="average">
+            Average:
+          </li>
+          <li id="product">
+            Product:
+          </li>
+          <li id="smallest">
+            Smallest:
+          </li>
+          <li id="largest">
+            Largest:
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>
