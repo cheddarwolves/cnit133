@@ -11,7 +11,7 @@ html {
 body {
 	font-family: 'Roboto', sans-serif;
 	line-height: 1.5;
-	color: #1D252D; /* PMS 433C */
+	color: #1D252D; /* PMS 433C, hsl(210, 22%, 15%) */
 }
 
 a {
@@ -40,6 +40,14 @@ h1 {
 
 h2 {
 	font-size: 2.25rem;
+}
+
+h3 {
+	font-size: 1.5rem;
+}
+
+h4 {
+	font-size: 1rem;
 }
 
 ul {
@@ -100,24 +108,67 @@ section {
 }
 
 /* Forms */
-form label, input {
+label, input {
 	display: block;
+	width: 20rem;
 }
 
-form input {
+input {
 	font-family: 'Roboto', sans-serif;
 	font-weight: 400;
 	font-size: 1rem;
 	line-height: 1.5;
-	border: 1px solid rgba(29,37,45,0.25);
+	border: 1px solid hsl(210, 10%, 75%);
 	padding: 0.5rem 1rem;
 	border-radius: 0.25rem;
 	margin-bottom: 1rem;
 }
 
+input[readonly] {
+	background-color: hsl(210, 22%, 95%);
+	color: hsl(210, 22%, 50%);
+}
+
 label {
-	font-weight: 700;
+	font-weight: 400;
 	margin-bottom: 0.25rem;
+}
+
+fieldset legend {
+	font-weight: 700;
+	margin-bottom: 1rem;
+}
+
+/* jQuery validator error messages */
+label.error {
+	color: #E56A54;
+	font-size: 0.75rem;
+	font-weight: 400;
+	margin-top: -0.75rem;
+}
+
+input.error {
+	border-color: #E56A54;
+}
+
+/* Focus states */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline-color: hsl(210, 22%, 75%);
+}
+
+/* jQuery UI tooltip */
+.ui-tooltip {
+	background-color: #1D252D;
+  padding: 0.5rem 1rem;
+  color: white;
+  border-radius: 0.25rem;
+  font: inherit;
+  font-size: 0.75rem;
+  box-shadow: none;
+  max-width: 36em;
 }
 
 /* Buttons */
@@ -148,7 +199,7 @@ button.primary {
 /* Callouts */
 
 .callout {
-	background-color: rgba(29,37,45,0.1);
+	background-color: hsl(210, 22%, 95%);
 	border-radius: 0.25rem;
 	padding: 1rem;
 }
@@ -159,7 +210,7 @@ button.primary {
 	display: flex;
 }
 
-#form, #results {
+#form, #results, .half {
 	width: 50%;
 }
 

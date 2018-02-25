@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Homework 3, Part 1: Student Grades</title>
+  
+  <meta name="description" content="Katie Riley's CNIT 133 Homework 2: Basic Operations">
+
+  <link href="./resources/css/reset.css" type="text/css" rel="stylesheet">
+  <link href="./resources/css/style.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+
+  <script type="text/javascript"> // Show and hide instructions panel
+    $(document).ready(function() {
+      $('#toggleInstructions').click(function() {
+        $('#instructions').slideToggle('slow');
+        return false;
+      });
+    });
+  </script>
+
+  <script type="text/javascript"> // Form validation
+    $(document).ready(function() {
+      $('#calculateFinalGradeAverage').validate({
+        rules: {
+          homeworkAverage: {
+            required: true,
+            digits: true,
+            min: 0,
+            max: 100
+          },
+          midtermExamScore: {
+            required: true,
+            digits: true,
+            min: 0,
+            max: 100
+          },
+          finalExamScore: {
+            required: true,
+            digits: true,
+            min: 0,
+            max: 100
+          },
+          acr: {
+            required: true,
+            digits: true,
+            min: 0,
+            max: 100
+          }
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript"> // Calculate final grade average
+
+    function calculateFinalGradeAverage() {
+
+      if ($('#calculateFinalGradeAverage').valid()) {
+
+        // get all the inputs
+        var inputHomeworkAverage = document.getElementById('calculateFinalGradeAverage').elements['homeworkAverage'].value;
+        var inputMidtermExamScore = document.getElementById('calculateFinalGradeAverage').elements['midtermExamScore'].value;
+        var inputFinalExamScore = document.getElementById('calculateFinalGradeAverage').elements['finalExamScore'].value;
+        var inputAcr = document.getElementById('calculateFinalGradeAverage').elements['acr'].value;
+
+        inputHomeworkAverage = parseInt(inputHomeworkAverage);
+        inputMidtermExamScore = parseInt(inputMidtermExamScore);
+        inputFinalExamScore = parseInt(inputFinalExamScore);
+        inputAcr = parseInt(inputAcr);
+
+        // do the math
+        var outputFinalGradeAverage = Math.round((0.5 * inputHomeworkAverage) + (0.2 * inputMidtermExamScore) + (0.2 * inputFinalExamScore) + (0.1 * inputAcr));
+
+        // show results with letter grade
+        if (outputFinalGradeAverage >= 90 && outputFinalGradeAverage <= 100) {
+          document.getElementById('calculateFinalGradeAverage').elements['finalGradeAverage'].value = outputFinalGradeAverage + ": " + "A";
+        } else if (outputFinalGradeAverage >= 80 && outputFinalGradeAverage <= 89) {
+            document.getElementById('calculateFinalGradeAverage').elements['finalGradeAverage'].value = outputFinalGradeAverage + ": " + "B";
+        } else if (outputFinalGradeAverage >= 70 && outputFinalGradeAverage <= 79) {
+            document.getElementById('calculateFinalGradeAverage').elements['finalGradeAverage'].value = outputFinalGradeAverage + ": " + "C";
+        } else if (outputFinalGradeAverage >= 60 && outputFinalGradeAverage <= 69) {
+            document.getElementById('calculateFinalGradeAverage').elements['finalGradeAverage'].value = outputFinalGradeAverage + ": " + "D " + "(student must retake the course)";
+        } else if (outputFinalGradeAverage >= 0 && outputFinalGradeAverage <= 59) {
+            document.getElementById('calculateFinalGradeAverage').elements['finalGradeAverage'].value = outputFinalGradeAverage + ": " + "F " + "(student must retake the course)";
+        }
+
+      }
+
+    }
+  </script>
+
+</head>
+
+<body>
+
+  <header class="container">
+    <h1>CNIT 133 Homework 3: Functions</h1>
+    <ul>
+      <li>
+        Part 1: Student Grades
+      </li>
+      <li>
+        <a href="hw3-2.html">
+          Part 2: Salesperson Earnings
+        </a>
+      </li>
+      <li>
+        <a href="hw3-3.html">
+          Part 3: Temperature Conversion
+        </a>
+      </li>
+      <li>
+        <a href="hw3-4.html">
+          Part 4: Multiplication Education
+        </a>
+      </li>
+    </ul>
+  </header>
+
+  <main class="container">
+
+    <h2>Part 1: Student Grades</h2>
+
+    <p><a href="#" id="toggleInstructions">Click to show/hide instructions</a></p>
+    <p id="instructions" class="hide callout">
+      Calculate the student's final average according to the formula: <br />
+      final average = (.5 * hwAvg) + (.2 * midExam) + (.2 * finalExam) + (.1 * ACR)
+    </p>
+
+    <form id="calculateFinalGradeAverage">
+      <label for="homeworkAverage">Homework average</label>
+      <input type="number" id="homeworkAverage" name="homeworkAverage" autofocus>
+
+      <label for="midtermExamScore">Mid-term exam score</label>
+      <input type="number" id="midtermExamScore" name="midtermExamScore">
+
+      <label for="finalExamScore">Final exam score</label>
+      <input type="number" id="finalExamScore" name="finalExamScore">
+
+      <label for="acr">ACR</label>
+      <input type="number" id="acr" name="acr">
+
+      <label for="finalGradeAverage">Final grade average</label>
+      <input type="text" id="finalGradeAverage" name="finalGradeAverage" readonly>
+
+      <button class="primary" type="button" onclick="calculateFinalGradeAverage()">Calculate final grade average</button>
+    </form>
+
+  </main>
+
+</body>
+</html>

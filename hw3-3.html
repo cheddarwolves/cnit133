@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Homework 3, Part 3: Temperature Conversion</title>
+  
+  <meta name="description" content="Katie Riley's CNIT 133 Homework 2: Basic Operations">
+
+  <link href="./resources/css/reset.css" type="text/css" rel="stylesheet">
+  <link href="./resources/css/style.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+
+  <script type="text/javascript"> // Form validation
+    $(document).ready(function() {
+      $('#convertCelsius').validate({
+        rules: {
+          degreesCelsius: {
+            required: true,
+            number: true
+          }
+        }
+      });
+      $('#convertFahrenheit').validate({
+        rules: {
+          degreesFahrenheit: {
+            required: true,
+            number: true
+          }
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript"> // Temperature conversion
+
+    function convertCelsiusToFahrenheit() {
+      if ($('#convertCelsius').valid()) {
+        // get and parse number
+        var inputCelsius = parseFloat(document.getElementById('convertCelsius').elements['degreesCelsius'].value);
+        document.getElementById('convertCelsius').elements['degreesCelsius'].focus();
+        // calculate and display result
+        var outputFahrenheit = Math.round((9 / 5 * inputCelsius) + 32);
+        document.getElementById('convertCelsius').elements['degreesFahrenheit'].value = outputFahrenheit;
+      }
+    }
+
+    function convertFahrenheitToCelsius() {
+      if ($('#convertFahrenheit').valid()) {
+        // get and parse number
+        var inputFahrenheit = parseFloat(document.getElementById('convertFahrenheit').elements['degreesFahrenheit'].value);
+        document.getElementById('convertFahrenheit').elements['degreesFahrenheit'].focus();
+        // calculate and display result
+        var outputCelsius = Math.round((inputFahrenheit - 32) * (5/9));
+        document.getElementById('convertFahrenheit').elements['degreesCelsius'].value = outputCelsius;
+      }
+    }
+  </script>
+
+</head>
+
+<body>
+
+  <header class="container">
+    <h1>CNIT 133 Homework 3: Functions</h1>
+    <ul>
+      <li>
+        <a href="hw3-1.html">
+          Part 1: Student Grades
+        </a>
+      </li>
+      <li>
+        <a href="hw3-2.html">
+          Part 2: Salesperson Earnings
+        </a>
+      </li>
+      <li>
+        Part 3: Temperature Conversion
+      </li>
+      <li>
+        <a href="hw3-4.html">
+          Part 4: Multiplication Education
+        </a>
+      </li>
+    </ul>
+  </header>
+
+  <main class="container">
+
+    <h2>Part 3: Temperature Conversion</h2>
+
+    <div class="flex">
+
+      <div class="half">
+        <form id="convertCelsius">
+          <label for="degreesCelsius">&#8451;</label>
+          <input type="number" id="degreesCelsius" name="degreesCelsius">
+          <label for="degreesFahrenheit">&#8457;</label>
+          <input type="number" id="degreesFahrenheit" name="degreesFahrenheit" readonly>
+          <button class="primary" type="button" onclick="convertCelsiusToFahrenheit()">Convert to Fahrenheit</button>
+        </form>
+      </div>
+
+      <div class="half">
+        <form id="convertFahrenheit">
+          <label for="degreesCelsius">&#8451;</label>
+          <input type="number" id="degreesCelsius" name="degreesCelsius" readonly>
+          <label for="degreesFahrenheit">&#8457;</label>
+          <input type="number" id="degreesFahrenheit" name="degreesFahrenheit">
+          <button class="primary" type="button" onclick="convertFahrenheitToCelsius()">Convert to Celsius</button>
+        </form>
+      </div>
+
+    </div>
+
+  </main>
+
+</body>
+</html>

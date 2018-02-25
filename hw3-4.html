@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Homework 3, Part 4: Multiplication Education</title>
+  
+  <meta name="description" content="Katie Riley's CNIT 133 Homework 2: Basic Operations">
+
+  <link href="./resources/css/reset.css" type="text/css" rel="stylesheet">
+  <link href="./resources/css/style.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+
+  <script type="text/javascript"> 
+
+    // Validation criteria
+    $(document).ready(function() {
+      $('#formMultiplication').validate({
+        rules: {
+          answer: {
+            required: true,
+            digits: true,
+          }
+        }
+      });
+    });
+
+    // Function check answer
+    function checkMultiplicationAnswer() {
+      if ($('#formMultiplication').valid()) {
+
+        var inputAnswer = parseInt(document.getElementById('formMultiplication').elements['answer'].value);
+
+        if (inputAnswer === validAnswer) {
+          var anotherProblem = window.confirm('Correct! Would you like to try another problem?');
+          if (anotherProblem == true) {
+            location.reload();
+          } else {
+            return;
+          }
+          
+        } else {
+          window.alert('Your answer is incorrect. Try again!');
+          document.getElementById('formMultiplication').elements['answer'].value = "";
+          document.getElementById('formMultiplication').elements['answer'].focus();
+        }
+      }
+    }
+
+    // Trigger function on enter
+    document.getElementById('formMultiplication').elements['answer'].onkeypress = function(event){
+        event.preventDefault();
+        if (event.keyCode == 13 || event.which == 13) {
+            alert("You are clicked");
+        }
+    };
+
+
+    // var input = document.getElementById('formMultiplication').elements['answer'];
+
+    // input.addEventListener('keyup', function(event) {
+    //   event.preventDefault();
+    //   if (event.keyCode === 13) {
+    //     document.getElementById('btnCheckAnswer').click();
+    //   }
+    // });
+
+
+  </script>
+
+</head>
+
+<body>
+
+  <header class="container">
+    <h1>CNIT 133 Homework 3: Functions</h1>
+    <ul>
+      <li>
+        <a href="hw3-1.html">
+          Part 1: Student Grades
+        </a>
+      </li>
+      <li>
+        <a href="hw3-2.html">
+          Part 2: Salesperson Earnings
+        </a>
+      </li>
+      <li>
+        <a href="hw3-3.html">
+          Part 3: Temperature Conversion
+        </a>
+      </li>
+      <li>
+        Part 4: Multiplication Education
+      </li>
+    </ul>
+  </header>
+
+  <main class="container">
+
+    <h2>Part 4: Multiplication Education</h2>
+
+    <form id="formMultiplication">
+      <label for="answer" id="randomProblem"></label>
+      <input type="number" id="answer" name="answer" autofocus>
+    </form>
+
+    <script type="text/javascript">
+      // Generate multiplication problem
+      var num1 = Math.round(Math.random() * 10);
+      var num2 = Math.round(Math.random() * 10);
+      var validAnswer = num1 * num2;
+      document.getElementById('randomProblem').innerHTML = 'How much is ' + num1 + ' &times; ' + num2 + '?';
+    </script>
+
+    <button id="btnCheckAnswer" class="primary" type="button" onclick="checkMultiplicationAnswer()">Check answer</button>
+
+  </main>
+
+</body>
+</html>
