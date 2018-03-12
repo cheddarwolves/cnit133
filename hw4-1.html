@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Homework 4, Part 1: Integer Calculation Loops</title>
+  
+  <meta name="description" content="Katie Riley's CNIT 133 Homework 4: Looping Statements">
+
+  <link href="./resources/css/reset.css" type="text/css" rel="stylesheet">
+  <link href="./resources/css/style.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+  <script> // jQuery UI Draggable
+    $( function() {
+      $( "#draggable" ).draggable();
+    } );
+  </script>
+
+</head>
+
+<body>
+
+  <header class="container">
+    <h1>CNIT 133 Homework 4: Looping Statements</h1>
+    <ul>
+      <li>
+        Part 1: Integer Calculation Loops
+      </li>
+      <li>
+        <a href="hw4-2.html">
+          Part 2: Calculate Compound Interest
+        </a>
+      </li>
+      <li>
+        <a href="hw4-3.html">
+          Part 3: Retail Sales
+        </a>
+      </li>
+      <li>
+        <a href="hw4-ec.html">
+          Extra Credit: Draw a Square
+        </a>
+      </li>
+    </ul>
+  </header>
+
+  <main class="container">
+
+    <h2>Part 1: Integer Calculation Loops</h2>
+
+    <h3>1A: Every third integer from 5 to 20 inclusive</h3>
+    <p id="product1A">Product:</p>
+    <p id="sum1A">Sum:</p> 
+
+    <h3>1B: Every fourth integer from 3 to 31 inclusive</h3>
+    <p id="product1B">Product:</p>
+    <p id="sum1B">Sum:</p> 
+
+    <h3>1C: jQuery Draggable</h3>
+    <p>Click and hold, then drag the cats.</p>
+    <img id="draggable" src="https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif" alt="Dragging cats on a mop" class="half">
+  
+  </main>
+
+  <script type="text/javascript">
+    // 1A: for loop
+    // product and sum of every third integer from 5 to 20 inclusive
+    var product1A = 1;
+    var sum1A = 0;
+
+    for (i=5; i<=20; i+=3) {
+      product1A = product1A * i;
+      sum1A += i; // sum = sum + i
+    }
+
+    document.getElementById('product1A').innerHTML = 'Product: ' + product1A.toLocaleString(); // 2,094,400
+    document.getElementById('sum1A').innerHTML = "Sum: " + sum1A.toLocaleString(); // 75
+
+    // 1B: while or do-while loop
+    // product and sum of every fourth integer from 3 to 31 inclusive
+
+    var i = 3;
+    var product1B = 1;
+    var sum1B = 0;
+
+    while (i<=31) {
+      product1B = product1B * i;
+      sum1B += i;
+      i += 4;
+    }
+
+    document.getElementById('product1B').innerHTML = 'Product: ' + product1B.toLocaleString(); // 1,267,389,585
+    document.getElementById('sum1B').innerHTML = "Sum: " + sum1B.toLocaleString(); // 136
+  </script>
+
+</body>
+</html>

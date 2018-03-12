@@ -16,12 +16,12 @@ body {
 
 a {
 	text-decoration: none;
-	color: #E56A54; /* PMS 7416C */
+	color: #D93E0B; /* hsl(15, 90%, 45%) */
 	transition: all 150ms ease-in;
 }
 
 a:hover {
-	color: #DC8633; /* PMS 7413C */
+	color: hsl(15, 100%, 35%); /* darker red */
 	text-decoration: underline;
 }
 
@@ -141,14 +141,14 @@ fieldset legend {
 
 /* jQuery validator error messages */
 label.error {
-	color: #E56A54;
+	color: #D93E0B;
 	font-size: 0.75rem;
 	font-weight: 400;
 	margin-top: -0.75rem;
 }
 
 input.error {
-	border-color: #E56A54;
+	border-color: #D93E0B;
 }
 
 /* Focus states */
@@ -179,7 +179,7 @@ button {
 	font-size: 1rem;
 	line-height: 1.5;
 	color: #ffffff;
-	background-color: rgba(29,37,45,0.5);
+	background-color: hsl(210, 22%, 50%);
 	border: 1px solid transparent;
 	padding: 0.5rem 1rem;
 	border-radius: 0.25rem;
@@ -192,7 +192,7 @@ button:hover {
 }
 
 button.primary {
-	background-color: #E56A54;
+	background-color: #D93E0B;
 }
 
 
@@ -217,19 +217,51 @@ button.primary {
 /* Tables */
 
 table {
-	border-collapse: separate;
-	border-spacing: 0.25rem;
-	border: 1px solid rgba(29,37,45,0.25);
+	border: 1px solid hsl(210, 10%, 75%);
 }
 
 table th, table td {
 	padding: 0.25rem;
-	border: 1px dotted rgba(29,37,45,0.25);
 	width: 10rem;
 }
 
-table .alignRight {
+table th {
+	font-weight: 700;
+	text-align: left;
+}
+
+table caption {
+	margin-bottom: 0.5rem;
+	text-align: left;
+	font-weight: 700;
+}
+
+table.borders {
+	border-collapse: separate;
+	border-spacing: 0.25rem;
+	border: 1px solid hsl(210, 10%, 75%);
+}
+
+table.borders th, table.borders td {
+	border: 1px dotted hsl(210, 10%, 75%);
+}
+
+table.alignRight {
 	text-align: right;
+}
+
+table.alternateRow tbody tr:nth-child(even) {
+	background-color: hsl(210, 22%, 95%);
+}
+
+table.drawSquare {
+	border: none;
+}
+
+table.drawSquare th, table.drawSquare td {
+	padding: 0;
+	width: 1.5rem;
+	text-align: center;
 }
 
 /* Misc */

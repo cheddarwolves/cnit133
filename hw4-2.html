@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Homework 4, Part 2: Calculate Compound Interest</title>
+  
+  <meta name="description" content="Katie Riley's CNIT 133 Homework 4: Looping Statements">
+
+  <link href="./resources/css/reset.css" type="text/css" rel="stylesheet">
+  <link href="./resources/css/style.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+
+  <script type="text/javascript"> // Helper to reformat to USD
+    var displayAsUSD = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+    });
+  </script>
+
+</head>
+
+
+<body>
+
+  <header class="container">
+    <h1>CNIT 133 Homework 4: Looping Statements</h1>
+    <ul>
+      <li>
+        <a href="hw4-1.html">
+          Part 1: Integer Calculation Loops
+        </a>
+      </li>
+      <li>
+        Part 2: Calculate Compound Interest
+      </li>
+      <li>
+        <a href="hw4-3.html">
+          Part 3: Retail Sales
+        </a>
+      </li>
+      <li>
+        <a href="hw4-ec.html">
+          Extra Credit: Draw a Square
+        </a>
+      </li>
+    </ul>
+  </header>
+
+  <main class="container">
+
+    <h2>Part 2: Calculate Compound Interest</h2>
+
+    <table class="alternateRow">
+      <caption>
+        Compound interest on a principal of $1,000 for interest rates of 5&ndash;10% for 1&ndash;10 years:
+      </caption>
+      <thead>
+        <tr>
+          <th>
+              &nbsp;
+          </th>
+          <th>
+              Year 1
+          </th>
+          <th>
+              Year 2
+          </th>
+          <th>
+              Year 3
+          </th>
+          <th>
+              Year 4
+          </th>
+          <th>
+              Year 5
+          </th>
+          <th>
+              Year 6
+          </th>
+          <th>
+              Year 7
+          </th>
+          <th>
+              Year 8
+          </th>
+          <th>
+              Year 9
+          </th>
+          <th>
+              Year 10
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <script type="text/javascript">
+          var principal = 1000;
+
+          for (interestRate=5; interestRate<=10; interestRate++) {
+            // every loop the interest rate increases; runs 6 times
+            document.write('<tr>');
+
+            document.write('<th>' + interestRate + '&#37;' + '</th>');
+
+              for (year=1; year<=10; year++) {
+                // every loop the year increases; runs 10 times
+                document.write('<td>');
+
+                // calculate amount for current interest rate and year
+                document.write(displayAsUSD.format(principal * Math.pow((1 + (interestRate / 100)), year)));
+
+                document.write('</td>');
+              }
+
+            document.write('</tr>');
+          }
+        </script>
+      </tbody>
+    </table>
+
+  </main>
+
+</body>
+</html>

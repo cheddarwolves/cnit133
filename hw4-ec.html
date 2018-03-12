@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Homework 4, Extra Credit: Draw a Square</title>
+  
+  <meta name="description" content="Katie Riley's CNIT 133 Homework 4: Looping Statements">
+
+  <link href="./resources/css/reset.css" type="text/css" rel="stylesheet">
+  <link href="./resources/css/style.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+
+  <script type="text/javascript"> // Form validation
+    $(document).ready(function() {
+      $('#formInputSize').validate({
+        rules: {
+          squareSize: {
+            required: true,
+            digits: true,
+            min: 2,
+            max: 10
+          }
+        },
+        submitHandler: drawSquare
+      });
+    });
+  </script>
+
+  <script type="text/javascript"> // Function draw square
+
+    function drawSquare() {
+
+      // clear any previous square
+      document.getElementById('tableDrawSquare').innerHTML = "";
+
+      // run new input
+      // if ($('#formInputSize').valid()) {
+
+        // get user input square size
+        var inputSize = parseInt(document.getElementById('formInputSize').elements['squareSize'].value);
+
+        var table = document.getElementById("tableDrawSquare");
+
+        // create top row
+        var row = table.insertRow(-1);
+        // create as many filled cells as the input size
+        for (cell=1; cell<=inputSize; cell++) {
+          var starCell = row.insertCell(-1);
+          starCell.innerHTML = "&#42;";
+        }
+
+        // create middle rows
+        for (row=1; row<=(inputSize-2); row++) {
+
+          var middleRow = table.insertRow(-1);
+
+          // create left filled cell
+          var starCell = middleRow.insertCell(-1);
+          starCell.innerHTML = "&#42;";
+
+          // create as many empty cells as the input size minus left/right cells
+          for (cell=1; cell<=(inputSize-2); cell++) {
+            var emptyCell = middleRow.insertCell(-1);
+            emptyCell.innerHTML = "&nbsp;";
+          }
+          // create right filled cell
+          var starCell = middleRow.insertCell(-1);
+          starCell.innerHTML = "&#42;";
+
+        }
+
+        // create bottom row
+        var row = table.insertRow(-1);
+        // create as many filled cells as the input size
+        for (cell=1; cell<=inputSize; cell++) {
+          var starCell = row.insertCell(-1);
+          starCell.innerHTML = "&#42;";
+        }
+        
+      // }
+
+      // clear field
+      // document.getElementById('formInputSize').elements['squareSize'].value = "";
+      document.getElementById('formInputSize').elements['squareSize'].focus();
+
+    }
+  </script>
+
+</head>
+
+<body>
+
+  <header class="container">
+    <h1>CNIT 133 Homework 4: Looping Statements</h1>
+    <ul>
+      <li>
+        <a href="hw4-1.html">
+          Part 1: Integer Calculation Loops
+        </a>
+      </li>
+      <li>
+        <a href="hw4-2.html">
+          Part 2: Calculate Compound Interest
+        </a>
+      </li>
+      <li>
+        <a href="hw4-3.html">
+          Part 3: Retail Sales
+        </a>
+      </li>
+      <li>
+        Extra Credit: Draw a Square
+      </li>
+    </ul>
+  </header>
+
+  <main class="container">
+
+    <h2>Extra Credit: Draw a Square</h2>
+
+    <div class="flex">
+      <div class="half">
+        <form id="formInputSize">
+          <label for="squareSize">Square size (2-10)</label>
+          <input type="number" id="squareSize" name="squareSize" autofocus>        
+          <button class="primary" type="submit" id="btnDrawSquare">Draw Square</button>
+        </form>
+      </div>
+
+      <div class="half callout">
+        <table class="drawSquare" id="tableDrawSquare">
+        </table> 
+      </div>
+    </div>
+
+    
+
+
+<!--     <div class="flex">
+      <div class="half">
+        <form id="formInputSize">
+          <label for="squareSize">Square size (2-10)</label>
+          <input type="number" id="squareSize" name="squareSize" autofocus>        
+          <button class="primary" type="button" id="btnDrawSquare">Draw Square</button>
+        </form>
+      </div>
+      <div class="half callout">
+
+          <script type="text/javascript">
+
+            function drawSquare() {
+              if ($('#formInputSize').valid()) {
+                // get user input square size
+                var inputSize = parseInt(document.getElementById('formInputSize').elements['squareSize'].value);
+
+                // create the table
+                document.write('<table class="drawASquare">');
+
+                // create the top row
+                document.write('<tr>');
+                  // create as many filled cells as the input size
+                  for (filledCells=1; filledCells<=inputSize; filledCells++) {
+                    document.write('<td>&#42;</td>');
+                  }
+                document.write('</tr>');
+
+                // create as many middle rows as the input size minus top/bottom rows
+                for (middleRows=1; middleRows<=(inputSize-2); middleRows++) {
+                  // open row
+                  document.write('<tr>');
+                    // create left filled cell
+                    document.write('<td>&#42;</td>');
+                    // create as many empty cells as the input size minus left/right cells
+                    for (emptyCells=1; emptyCells<=(inputSize-2); emptyCells++) {
+                      document.write('<td>&nbsp;</td>');
+                    }
+                    // create right filled cell
+                    document.write('<td>&#42;</td>');
+                  // close row
+                  document.write('</tr>');
+                }
+
+                // create the bottom row
+                document.write('<tr>');
+                  // create as many filled cells as the input size
+                  for (filledCells=1; filledCells<=inputSize; filledCells++) {
+                    document.write('<td>&#42;</td>');
+                  }
+                document.write('</tr>');
+
+                // close the table
+                document.write('</table>')
+
+              }
+            }
+
+            // onclick behavior
+            document.getElementById('btnDrawSquare').onclick = drawSquare;
+
+          </script>
+      </div>
+    </div> -->
+
+  </main>
+
+<!-- <script type="text/javascript"> // onclick behavior
+
+  document.getElementById('btnDrawSquare').onclick = drawSquare;
+
+</script> -->
+
+</body>
+</html>
