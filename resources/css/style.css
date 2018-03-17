@@ -231,7 +231,7 @@ table th {
 }
 
 table caption {
-	margin-bottom: 0.5rem;
+	margin-bottom: 1rem;
 	text-align: left;
 	font-weight: 700;
 }
@@ -239,14 +239,13 @@ table caption {
 table.borders {
 	border-collapse: separate;
 	border-spacing: 0.25rem;
-	border: 1px solid hsl(210, 10%, 75%);
 }
 
 table.borders th, table.borders td {
 	border: 1px dotted hsl(210, 10%, 75%);
 }
 
-table.alignRight {
+.alignRight {
 	text-align: right;
 }
 

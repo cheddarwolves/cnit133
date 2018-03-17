@@ -15,7 +15,139 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
 
+  <script type="text/javascript"> // Form validation
+    $(document).ready(function() {
+      $('#formInputSales').validate({
+        rules: {
+          quantityProduct1: {
+            required: true,
+            digits: true,
+            min: 0,
+          },
+          quantityProduct2: {
+            required: true,
+            digits: true,
+            min: 0,
+          },
+          quantityProduct3: {
+            required: true,
+            digits: true,
+            min: 0,
+          },
+          quantityProduct4: {
+            required: true,
+            digits: true,
+            min: 0,
+          },
+          quantityProduct5: {
+            required: true,
+            digits: true,
+            min: 0,
+          }
+        },
+        submitHandler: calcEarnings
+      });
+    });
+  </script>
 
+  <script type="text/javascript"> // Helper to reformat to USD
+    var displayAsUSD = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+    });
+  </script>
+
+  <script type="text/javascript"> // Calculate earnings
+
+    function calcEarnings() {
+
+      var priceProduct1 = 2.98;
+      var priceProduct2 = 4.50;
+      var priceProduct3 = 9.98;
+      var priceProduct4 = 4.49;
+      var priceProduct5 = 6.87;
+
+      // get all quantities sold
+      var inputQuantityProduct1 = parseInt(document.getElementById('formInputSales').elements['quantityProduct1'].value);
+      var inputQuantityProduct2 = parseInt(document.getElementById('formInputSales').elements['quantityProduct2'].value);
+      var inputQuantityProduct3 = parseInt(document.getElementById('formInputSales').elements['quantityProduct3'].value);
+      var inputQuantityProduct4 = parseInt(document.getElementById('formInputSales').elements['quantityProduct4'].value);
+      var inputQuantityProduct5 = parseInt(document.getElementById('formInputSales').elements['quantityProduct5'].value);
+
+      // set quantity table column
+      document.getElementById('outputQuantityProduct1').innerHTML = inputQuantityProduct1;
+      document.getElementById('outputQuantityProduct2').innerHTML = inputQuantityProduct2;
+      document.getElementById('outputQuantityProduct3').innerHTML = inputQuantityProduct3;
+      document.getElementById('outputQuantityProduct4').innerHTML = inputQuantityProduct4;
+      document.getElementById('outputQuantityProduct5').innerHTML = inputQuantityProduct5;
+
+      // set earnings table column
+      var outputEarningsProduct1 = inputQuantityProduct1 * priceProduct1;
+      var outputEarningsProduct2 = inputQuantityProduct2 * priceProduct2;
+      var outputEarningsProduct3 = inputQuantityProduct3 * priceProduct3;
+      var outputEarningsProduct4 = inputQuantityProduct4 * priceProduct4;
+      var outputEarningsProduct5 = inputQuantityProduct5 * priceProduct5;
+
+      document.getElementById('outputEarningsProduct1').innerHTML = displayAsUSD.format(outputEarningsProduct1);
+      document.getElementById('outputEarningsProduct2').innerHTML = displayAsUSD.format(outputEarningsProduct2);
+      document.getElementById('outputEarningsProduct3').innerHTML = displayAsUSD.format(outputEarningsProduct3);
+      document.getElementById('outputEarningsProduct4').innerHTML = displayAsUSD.format(outputEarningsProduct4);
+      document.getElementById('outputEarningsProduct5').innerHTML = displayAsUSD.format(outputEarningsProduct5);
+
+      // set total earnings cell
+      document.getElementById('outputEarningsTotal').innerHTML = displayAsUSD.format(outputEarningsProduct1 + outputEarningsProduct2 + outputEarningsProduct3 + outputEarningsProduct4 + outputEarningsProduct5);
+
+    }
+
+  </script>
+
+<!--   <script type="text/javascript">
+    var product1 = 2.98;
+    var product2 = 4.50;
+    var product3 = 9.98;
+    var product4 = 4.49;
+    var product5 = 6.87;
+
+    switch(retailPrice) {
+      case "product1":
+        // do something;
+        break;
+      case "product2":
+        // do something
+        break;
+      case "product3":
+        // do something
+        break;
+      case "product4":
+        // do something
+        break;
+      case "product5":
+        // do something
+        break;
+    }
+
+    function calcProd1() {
+      document.getElementById('').innerHTML = quantityProduct1.value;
+      document.getElementById('').innerHTML = () * ();
+    }
+
+    function calcProd2() {
+      document.getElementById('').innerHTML = quantityProduct2.value;
+    }
+
+    function calcProd3() {
+      document.getElementById('').innerHTML = quantityProduct3.value;
+    }
+
+    function calcProd4() {
+      document.getElementById('').innerHTML = quantityProduct4.value;
+    }
+
+    function calcProd5() {
+      document.getElementById('').innerHTML = quantityProduct5.value;
+    }
+  </script> -->
 
 </head>
 
@@ -49,7 +181,247 @@
 
     <h2>Part 3: Retail Sales</h2>
 
-  </main>
+    <div class="flex">
 
+      <div class="half">
+        <form id="formInputSales">
+          <fieldset>
+            <legend>Quantities sold:</legend>
+
+            <label for="quantityProduct1">Product 1</label>
+            <input type="number" id="quantityProduct1" name="quantityProduct1" autofocus>
+
+            <label for="quantityProduct2">Product 2</label>
+            <input type="number" id="quantityProduct2" name="quantityProduct2">
+
+            <label for="quantityProduct3">Product 3</label>
+            <input type="number" id="quantityProduct3" name="quantityProduct3">
+
+            <label for="quantityProduct4">Product 4</label>
+            <input type="number" id="quantityProduct4" name="quantityProduct4">
+
+            <label for="quantityProduct5">Product 5</label>
+            <input type="number" id="quantityProduct5" name="quantityProduct5">
+          </fieldset>
+          
+          <button class="primary" type="sumbit">Calculate earnings</button>
+        </form>
+      </div>
+
+      <div class="half callout">
+        <table class="borders" id="tableEarnings">
+
+          <caption>Weekly earnings:</caption>
+
+          <tr>
+            <th>
+              Product &num;
+            </th>
+            <th>
+              Qty
+            </th>
+            <th>
+              Price
+            </th>
+            <th>
+              Earnings
+            </th>
+          </tr>
+
+          <script type="text/javascript">
+            for (productNumber=1; productNumber<=5; productNumber++) {
+                  // open row
+                  document.write('<tr>');
+
+                  // cell with product number
+                  document.write('<td>' + productNumber + '</td>');
+                  
+                  // cells with quantity, price, and total
+                  switch(productNumber) {
+                    case 1:
+                      document.write('<td id="outputQuantityProduct1">' + '0' + '</td>');
+                      document.write('<td>' + '$2.98' + '</td>');
+                      document.write('<td id="outputEarningsProduct1">' + '$0.00' + '</td>');
+                      break;
+                    case 2:
+                      document.write('<td id="outputQuantityProduct2">' + '0' + '</td>');
+                      document.write('<td>' + '$4.50' + '</td>');
+                      document.write('<td id="outputEarningsProduct2">' + '$0.00' + '</td>');
+                      break;
+                    case 3:
+                      document.write('<td id="outputQuantityProduct3">' + '0' + '</td>');
+                      document.write('<td>' + '$9.98' + '</td>');
+                      document.write('<td id="outputEarningsProduct3">' + '$0.00' + '</td>');
+                      break;
+                    case 4:
+                      document.write('<td id="outputQuantityProduct4">' + '0' + '</td>');
+                      document.write('<td>' + '$4.49' + '</td>');
+                      document.write('<td id="outputEarningsProduct4">' + '$0.00' + '</td>');
+                      break;
+                    case 5:
+                      document.write('<td id="outputQuantityProduct5">' + '0' + '</td>');
+                      document.write('<td>' + '$6.87' + '</td>');
+                      document.write('<td id="outputEarningsProduct5">' + '$0.00' + '</td>');
+                      break;
+                    default:
+                      document.write('<td>' + '0' + '</td>');
+                      document.write('<td>' + '$0.00' + '</td>');
+                      document.write('<td>' + '$0.00' + '</td>');
+                      break;
+                  }
+                
+                  // close row
+                  document.write('</tr>');
+                }
+          </script>
+
+<!--           <tr>
+            <td>
+              1
+            </td>
+            <td id="outputQuantityProduct1">
+              0
+            </td>
+            <td>
+              $2.98
+            </td>
+            <td id="outputEarningsProduct1">
+              $0.00
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              2
+            </td>
+            <td id="outputQuantityProduct2">
+              0
+            </td>
+            <td>
+              $4.50
+            </td>
+            <td id="outputEarningsProduct2">
+              $0.00
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              3
+            </td>
+            <td id="outputQuantityProduct3">
+              0
+            </td>
+            <td>
+              $9.98
+            </td>
+            <td id="outputEarningsProduct3">
+              $0.00
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              4
+            </td>
+            <td id="outputQuantityProduct4">
+              0
+            </td>
+            <td>
+              $4.49
+            </td>
+            <td id="outputEarningsProduct4">
+              $0.00
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              5
+            </td>
+            <td id="outputQuantityProduct5">
+              0
+            </td>
+            <td>
+              $6.87
+            </td>
+            <td id="outputEarningsProduct5">
+              $0.00
+            </td>
+          </tr> -->
+
+          <tr>
+            <th colspan="3" class="alignRight">
+              Total:
+            </th>
+            <td id="outputEarningsTotal">
+              $0.00
+            </td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+
+  </main>
+<!--             <script type="text/javascript">
+
+              var priceProduct1 = displayAsUSD.format(2.98);
+              var priceProduct2 = displayAsUSD.format(4.50);
+              var priceProduct3 = displayAsUSD.format(9.98);
+              var priceProduct4 = displayAsUSD.format(4.49);
+              var priceProduct5 = displayAsUSD.format(6.87);
+
+              var quantityProduct1 = parseInt(document.getElementById('formInputSales').elements['quantityProduct1'].value);
+              var quantityProduct2 = parseInt(document.getElementById('formInputSales').elements['quantityProduct2'].value);
+              var quantityProduct3 = parseInt(document.getElementById('formInputSales').elements['quantityProduct3'].value);
+              var quantityProduct4 = parseInt(document.getElementById('formInputSales').elements['quantityProduct4'].value);
+              var quantityProduct5 = parseInt(document.getElementById('formInputSales').elements['quantityProduct5'].value);
+
+              for (productNumber=1; productNumber<=5; productNumber++) {
+                // open row
+                document.write('<tr>');
+
+                // cell with product number
+                document.write('<td>' + productNumber + '</td>');
+                
+                // cells with quantity, price, and total
+                switch(productNumber) {
+                  case 1:
+                    document.write('<td>' + quantityProduct1 + '</td>');
+                    document.write('<td>' + priceProduct1 + '</td>');
+                    document.write('<td>' + (priceProduct1 * quantityProduct1) + '</td>');
+                    break;
+                  case 2:
+                    document.write('<td>' + quantityProduct2 + '</td>');
+                    document.write('<td>' + priceProduct2 + '</td>');
+                    document.write('<td>' + (priceProduct2 * quantityProduct2) + '</td>');
+                    break;
+                  case 3:
+                    document.write('<td>' + quantityProduct3 + '</td>');
+                    document.write('<td>' + priceProduct3 + '</td>');
+                    document.write('<td>' + (priceProduct3 * quantityProduct3) + '</td>');
+                    break;
+                  case 4:
+                    document.write('<td>' + quantityProduct4 + '</td>');
+                    document.write('<td>' + priceProduct4 + '</td>');
+                    document.write('<td>' + (priceProduct4 * quantityProduct4) + '</td>');
+                    break;
+                  case 5:
+                    document.write('<td>' + quantityProduct5 + '</td>');
+                    document.write('<td>' + priceProduct5 + '</td>');
+                    document.write('<td>' + (priceProduct5 * quantityProduct5) + '</td>');
+                    break;
+                  default:
+                    document.write('<td>' + 'error' + '</td>');
+                    document.write('<td>' + 'error' + '</td>');
+                    document.write('<td>' + 'error' + '</td>');
+                    break;
+                }
+              
+                // close row
+                document.write('</tr>');
+              }
+            </script> -->
 </body>
 </html>
