@@ -15,7 +15,7 @@ body {
 }
 
 a {
-	text-decoration: none;
+	text-decoration: underline;
 	color: #D93E0B; /* hsl(15, 90%, 45%) */
 	transition: all 150ms ease-in;
 }
@@ -108,20 +108,32 @@ section {
 }
 
 /* Forms */
-label, input {
+label, input, select {
 	display: block;
 	width: 20rem;
 }
 
-input {
+input, select {
 	font-family: 'Roboto', sans-serif;
 	font-weight: 400;
 	font-size: 1rem;
 	line-height: 1.5;
+	color: #1D252D;
+	background-color: white;
 	border: 1px solid hsl(210, 10%, 75%);
 	padding: 0.5rem 1rem;
 	border-radius: 0.25rem;
-	margin-bottom: 1rem;
+	margin-bottom: 1.5rem;
+	/*margin: 0.25rem 0;*/
+}
+
+select {
+	/* Removes the default <select> styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: #fff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right .75rem center;
+  background-size: 8px 10px;
 }
 
 input[readonly] {
@@ -130,13 +142,44 @@ input[readonly] {
 }
 
 label {
-	font-weight: 400;
+	font-weight: 700;
 	margin-bottom: 0.25rem;
+}
+
+.inputInline input[type="radio"], 
+.inputInline input[type="checkbox"] {
+	display: inline-block;
+	width: auto;
+	margin: 0 0.5rem 0 0;
+}
+
+.inputInline div {
+	margin-bottom: 0.25rem;
+}
+
+.inputInline div:last-child {
+	margin-bottom: 0;
+}
+
+.inputInline {
+	margin-bottom: 1.5rem;
+}
+
+.inputInline label {
+	display: inline-block;
+	width: 32em;
+	font-weight: 400;
+	margin: 0;
+}
+
+.inputInline label.error {
+	display: block;
+	margin: 0.25rem 0 0 0;
 }
 
 fieldset legend {
 	font-weight: 700;
-	margin-bottom: 1rem;
+	margin-bottom: 0.25rem;
 }
 
 /* jQuery validator error messages */
@@ -144,10 +187,10 @@ label.error {
 	color: #D93E0B;
 	font-size: 0.75rem;
 	font-weight: 400;
-	margin-top: -0.75rem;
+	margin: -1.125rem 0 1.5rem 0;
 }
 
-input.error {
+input.error, select.error {
 	border-color: #D93E0B;
 }
 

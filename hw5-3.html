@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Homework 4, Part 3: State Information</title>
+  
+  <meta name="description" content="Katie Riley's CNIT 133 Homework 5: Arrays">
+
+  <link href="./resources/css/reset.css" type="text/css" rel="stylesheet">
+  <link href="./resources/css/style.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+  <!--Validation-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+
+  <script type="text/javascript"> // Form validation
+    $(document).ready(function() {
+      $('#formStateInfo').validate({
+        rules: {
+          inputState: {
+            required: true,
+          }
+        },
+        submitHandler: findStateInfo
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    // Outdated:
+    // var fred = new Array();
+    //   fred[0] = "Hi";
+    //   fred[1] = 127;
+    //   fred[2] = true;
+    //   fred[3] = "Wow"; 
+
+    // var fred = ["Hi", 127, true, "Wow"];
+    // var fred =  [{}, {}, {}, {}];
+    // // create empty array of any size
+    // var fred = [];
+
+    // var inputState = "CA";
+
+    var arrayStateInfo = [ 
+      ["AL", "Alabama", "Montgomery", 4779736], 
+      ["AK", "Alaska", "Juneau",  710231], 
+      ["AZ", "Arizona", "Phoenix", 6392017], 
+      ["AR", "Arkansas", "Little Rock", 2915918], 
+      ["CA", "California", "Sacramento", 37253956], 
+      ["CO", "Colorado", "Denver", 5029196] 
+    ];
+
+    function findStateInfo(inputState) {
+
+      var inputState = document.getElementById('formStateInfo').elements['inputState'].value.toUpperCase();
+
+      var matchingState;
+
+      for (var i = 0; i < arrayStateInfo.length; i++) {
+        // find matching state
+        if ( inputState === arrayStateInfo[i][0].toUpperCase() || inputState === arrayStateInfo[i][1].toUpperCase() ) {
+          matchingState = arrayStateInfo[i];
+        } 
+      }
+
+      if (matchingState) { // if matchingState is truthy
+        document.getElementById('outputStateName').innerHTML = "State Name: " + matchingState[1];
+        document.getElementById('outputStateCapital').innerHTML = "State Capital: " + matchingState[2];
+        document.getElementById('outputStatePopulation').innerHTML = "Population: " + matchingState[3].toLocaleString();
+      }
+      else { 
+        document.getElementById('outputStateName').innerHTML = "We don't know about that state!";
+        document.getElementById('outputStateCapital').innerHTML = "Hint: try one of the first six states.";
+        document.getElementById('outputStatePopulation').innerHTML = "";
+      
+      }
+
+    }
+
+  </script>
+
+</head>
+
+<body>
+
+  <header class="container">
+    <h1>CNIT 133 Homework 5: Arrays</h1>
+    <ul>
+      <li>
+        <a href="hw5-1.html">
+          Part 1: Mixed Input Form
+        </a>
+      </li>
+      <li>
+        <a href="hw5-2.html">
+          Part 2: Pulldown Menus
+        </a>
+      </li>
+      <li>
+        Part 3: State Information
+      </li>
+    </ul>
+  </header>
+
+  <main class="container">
+
+    <h2>Part 3: State Information</h2>
+
+    <div class="flex">
+      <div class="half">
+        <form id="formStateInfo">
+          <fieldset>
+            <legend>Enter a state abbreviation or name (lower or upper case is ok)</legend>
+            <label for="inputState">State name</label>
+            <input type="text" id="inputState" name="inputState" autofocus>
+            <button type="submit" class="primary">Get state information</button>
+          </fieldset>
+        </form>
+
+      </div>
+
+      <div class="half callout">
+        <h4>State Information:</h4>
+        <ul id="stateInfo">
+          <li id="outputStateName">
+            State Name:
+          </li>
+          <li id="outputStateCapital">
+            State Capital:
+          </li>
+          <li id="outputStatePopulation">
+            Population:
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>

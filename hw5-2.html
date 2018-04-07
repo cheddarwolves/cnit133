@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Homework 4, Part 2: Pulldown Menus</title>
+  
+  <meta name="description" content="Katie Riley's CNIT 133 Homework 5: Arrays">
+
+  <link href="./resources/css/reset.css" type="text/css" rel="stylesheet">
+  <link href="./resources/css/style.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+  <script type="text/javascript">
+    
+    function navigateToSomethingToRead(theForm) {
+      var urlForSomethingToRead = theForm.somethingToRead.options[theForm.somethingToRead.selectedIndex].value;
+      window.location = urlForSomethingToRead;
+    }
+
+    function navigateToSomewhereToShop(theForm) {
+      var urlForSomewhereToShop = theForm.somewhereToShop.options[theForm.somewhereToShop.selectedIndex].value;
+      window.location = urlForSomewhereToShop;
+    }
+
+  </script>
+
+</head>
+
+<body>
+
+  <header class="container">
+    <h1>CNIT 133 Homework 5: Arrays</h1>
+    <ul>
+      <li>
+        <a href="hw5-1.html">
+          Part 1: Mixed Input Form
+        </a>
+      </li>
+      <li>
+        Part 2: Pulldown Menus
+      </li>
+      <li>
+        <a href="hw5-3.html">
+          Part 3: State Information
+        </a>
+      </li>
+    </ul>
+  </header>
+
+  <main class="container">
+
+    <h2>Part 2: Pulldown Menus</h2>
+
+    <div class="flex">
+      <div class="half">
+        <form>
+          <label for="favoriteSeason">(Onchange) Pick something to read:</label>
+          <select id="somethingToRead" name="somethingToRead" onchange="navigateToSomethingToRead(this.form);">
+            <option>Choose something to read</option>
+            <option value="http://jezebel.com/">Jezebel</option>
+            <option value="https://sf.eater.com">Eater SF</option>
+            <option value="http://npr.org/">NPR</option>
+          </select>
+        </form>
+      </div>
+      <div class="half">
+        <form>
+          <label for="favoriteSeason">(Onclick) Choose somewhere to shop: </label>
+          <select id="somewhereToShop" name="somewhereToShop">
+            <option value="http://www.ulta.com/">Ulta</option> 
+            <option value="https://www.stories.com/us/">&amp; Other Stories</option>
+            <option value="http://everlane.com/">Everlane</option>
+          </select>
+          <button type="button" class="primary" onclick="navigateToSomewhereToShop(this.form);">Treat Yo $elf</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>

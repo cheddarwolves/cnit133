@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Homework 4, Part 1: Mixed Input Form</title>
+  
+  <meta name="description" content="Katie Riley's CNIT 133 Homework 5: Arrays">
+
+  <link href="./resources/css/reset.css" type="text/css" rel="stylesheet">
+  <link href="./resources/css/style.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+  <!--Validation-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+
+  <script type="text/javascript"> // Form validation
+    $(document).ready(function() {
+      $('#formMixedInput').validate({
+
+        rules: {
+          name: {
+            required: true,
+          },
+          contact: {
+            required: true,
+            minlength: 1,
+          },
+          interest: {
+            required: true,
+            minlength: 1,
+          },
+          favoriteSeason: {
+            required: true,
+          }
+        },
+
+        messages: { 
+          "contact": "Please select one item.",
+          "interest": "Please select at least one item."            
+        },
+
+        errorPlacement: function( error, element ) {
+          if(element.attr("name") === "contact" || element.attr("name") === "interest") {
+            element.parent().parent().append(error);
+          } else {
+            error.insertAfter(element); // standard behaviour
+          }
+        },
+
+        submitHandler: storeFormInfo
+
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    function storeFormInfo() {
+      // get form inputs
+      var inputName = document.getElementById('formMixedInput').elements['name'].value;
+      // var inputContactMethod = document.getElementById('formMixedInput').elements['contact'].value;
+      // var inputInterests = document.getElementById('formMixedInput').elements['interest'].value;
+      // var inputFavoriteSeason = document.getElementById('formMixedInput').elements['favoriteSeason'].value;
+
+      // var rates = document.getElementsByName('rate');
+      // var rate_value;
+      // for(var i = 0; i < rates.length; i++){
+      //     if(rates[i].checked){
+      //         rate_value = rates[i].value;
+      //     }
+      // } // get radio value
+
+
+      // alert('Thanks ' + inputName + '! We will contact you via ' + inputContactMethod + ' about ' + inputInterests + ' in ' + inputFavoriteSeason + '.');
+
+      alert('Thanks ' + inputName + '! We saved your preferences!');
+
+      document.getElementById('formMixedInput').reset();
+
+    }
+  </script>
+
+</head>
+
+<body>
+
+  <header class="container">
+    <h1>CNIT 133 Homework 5: Arrays</h1>
+    <ul>
+      <li>
+        Part 1: Mixed Input Form
+      </li>
+      <li>
+        <a href="hw5-2.html">
+          Part 2: Pulldown Menus
+        </a>
+      </li>
+      <li>
+        <a href="hw5-3.html">
+          Part 3: State Information
+        </a>
+      </li>
+    </ul>
+  </header>
+
+  <main class="container">
+
+    <h2>Part 1: Mixed Input Form</h2>
+
+    <form id="formMixedInput">
+
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" autofocus>
+
+      <!--Radio group-->
+      <fieldset class="inputInline">
+        <legend>Select your preferred contact method:</legend>
+
+        <div>
+          <input type="radio" id="contactChoice1" name="contact" value="email">
+          <label for="contactChoice1">Email</label>
+        </div>
+
+        <div>
+          <input type="radio" id="contactChoice2" name="contact" value="phone">
+          <label for="contactChoice2">Phone</label>
+        </div>
+
+        <div>
+          <input type="radio" id="contactChoice3" name="contact" value="mail">
+          <label for="contactChoice3">Mail</label>
+        </div>
+
+      </fieldset>
+
+      <!--Check group-->
+      <fieldset class="inputInline">
+        <legend>Select your interests:</legend>
+        <div>
+          <input type="checkbox" id="coding" name="interest" value="coding">
+          <label for="coding">Coding</label>
+        </div>
+        <div>
+          <input type="checkbox" id="music" name="interest" value="music">
+          <label for="music">Music</label>
+        </div>
+        <div>
+          <input type="checkbox" id="art" name="interest" value="art">
+          <label for="art">Art</label>
+        </div>
+        <div>
+          <input type="checkbox" id="sports" name="interest" value="sports">
+          <label for="sports">Sports</label>
+        </div>
+        <div>
+          <input type="checkbox" id="cooking" name="interest" value="cooking">
+          <label for="cooking">Cooking</label>
+        </div>
+      </fieldset>
+
+      <label for="favoriteSeason">Select your favorite season:</label>
+      <select id="favoriteSeason" name="favoriteSeason">
+        <option value="">Select a season</option>
+        <option value="spring">Spring</option> 
+        <option value="summer">Summer</option>
+        <option value="fall">Fall</option>
+        <option value="winter">Winter</option>
+      </select>
+
+      <button type="submit" class="primary">Submit</button>
+
+    </form>
+
+    
+  </main>
+
+</body>
+</html>
