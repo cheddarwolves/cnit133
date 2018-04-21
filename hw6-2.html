@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Homework 6, Part 2: Search Text</title>
+  
+  <meta name="description" content="Katie Riley's CNIT 133 Homework 6: Objects">
+
+  <link href="./resources/css/reset.css" type="text/css" rel="stylesheet">
+  <link href="./resources/css/style.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+  <script type="text/javascript"> // Search text
+
+    window.onload = function () {
+
+      // Define button behavor
+      document.getElementById("buttonSearchText").onclick = functionSearchText;
+
+      // Define "Enter" behavior
+      document.getElementById('formSearchText').onkeydown = function(event) {
+        // 13 = "Enter" key
+        if (event.keyCode === 13) {
+          // Cancel the default action
+          event.preventDefault();
+          // Trigger the button element with a click
+          document.getElementById("buttonSearchText").click();
+        }
+      };
+
+      function functionSearchText() {
+
+        // get inputted text
+        var inputTextToSearch = document.getElementById('inputTextToSearch').value;
+        var inputSearchTerm = document.getElementById('inputSearchTerm').value;
+
+        // validate field is filled out
+        if (inputTextToSearch==="" || inputSearchTerm==="") {
+          return;
+
+        } else {
+            // create regular expression from input search term
+            var regexInputSearchTerm = new RegExp(inputSearchTerm, 'gi');
+            // find matches in input text
+            var searchTermMatches = inputTextToSearch.match(regexInputSearchTerm);
+            
+            if (searchTermMatches===null) {
+              // open window when there are no matches
+              var windowNoMatches = window.open("", "windowNoMatches", "width=300,height=100");
+              windowNoMatches.focus();
+
+              var messageNoMatches = '<html>\n';
+              messageNoMatches += '<head>\n';
+              messageNoMatches += '<title>No occurrences</title>\n';
+              messageNoMatches += '<link href="./resources/css/reset.css" type="text/css" rel="stylesheet">\n';
+              messageNoMatches += '<link href="./resources/css/style.css" type="text/css" rel="stylesheet">\n';
+              messageNoMatches += '<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">\n';
+              messageNoMatches += '</head>\n';
+              messageNoMatches += '<body>\n';
+              messageNoMatches += '<div class="container">\n';
+              messageNoMatches += '<p>There are no occurrences of <em>' + inputSearchTerm + '</em>.</p>\n';
+              // messageNoMatches += '<button type="button" class="button" onclick="window.close()">Close window</button>\n';
+              messageNoMatches += '</div>\n';
+              messageNoMatches += '</body>\n';
+              messageNoMatches += '</html>';
+
+              windowNoMatches.document.write(messageNoMatches);
+
+              windowNoMatches.document.close();
+
+            } else {
+                document.getElementById('outputOccurrences').innerHTML = "There are <strong>" + searchTermMatches.length + "</strong> occurrences of <em>" + inputSearchTerm + "</em>.";
+              }
+
+            // put focus back on search term field
+            document.getElementById('formSearchText').elements['inputSearchTerm'].focus();
+
+          } // end else
+
+      } // end functionSearchText
+
+    } // end all
+
+  </script>
+
+</head>
+
+<body>
+
+  <header class="container">
+    <h1>CNIT 133 Homework 6: Objects</h1>
+    <ul>
+      <li>
+        <a href="hw6-1.html">
+          Part 1: Math
+        </a>
+      </li>
+      <li>
+        Part 2: Search Text
+      </li>
+      <li>
+        <a href="hw6-3.html">
+          Part 3: Data Formatting
+        </a>
+      </li>
+    </ul>
+  </header>
+
+  <main class="container">
+
+    <h2>Part 2: Search Text</h2>
+
+    <section class="flex">
+
+      <div class="half">
+
+        <form id="formSearchText">
+          <label for="inputTextToSearch">Text to search</label>
+          <textarea id="inputTextToSearch" name="inputTextToSearch" rows="8" placeholder="Imagine there's no heaven&hellip;" required>Imagine there's no heaven / It's easy if you try / No hell below us / Above us only sky / Imagine all the people living for today / Imagine there's no countries / It isn't hard to do / Nothing to kill or die for / And no religion too / Imagine all the people living life in peace, you / You may say I'm a dreamer / But I'm not the only one / I hope some day you'll join us / And the world will be as one / Imagine no possessions / I wonder if you can / No need for greed or hunger / A brotherhood of man / Imagine all the people sharing all the world, you / You may say I'm a dreamer / But I'm not the only one / I hope some day you'll join us / And the world will be as one</textarea>
+          <div class="errorMessage" id="error-for-inputTextToSearch">&#x26a0; Please enter some text to search.</div>
+
+          <label for="inputSearchTerm">Search term</label>
+          <input type="text" id="inputSearchTerm" name="inputSearchTerm" value="imagine" required autofocus>
+          <div class="errorMessage" id="error-for-inputSearchTerm">&#x26a0; Please enter a search term.</div>
+
+          <button id="buttonSearchText" type="button" class="primary">Search text</button>
+        </form>
+
+      </div>
+
+      <div class="half callout">
+        <h4>Number of occurrences:</h4>
+
+        <ul id="stateInfo">
+          <li id="outputOccurrences">
+          </li>
+        </ul>
+      </div>
+
+    </section>
+
+  </main>
+
+</body>
+</html>

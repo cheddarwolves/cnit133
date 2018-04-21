@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Homework 6, Part 1: Math</title>
+  
+  <meta name="description" content="Katie Riley's CNIT 133 Homework 6: Objects">
+
+  <link href="./resources/css/reset.css" type="text/css" rel="stylesheet">
+  <link href="./resources/css/style.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i" rel="stylesheet">
+
+  <script type="text/javascript"> // NumberWang
+
+    window.onload = function () {
+
+      // Define button behavor
+      document.getElementById("buttonNumberWang").onclick = numberWang;
+
+      // Define "Enter" behavior
+      document.getElementById('inputFloatingNumber').onkeydown = function(event) {
+        // 13 = "Enter" key
+        if (event.keyCode === 13) {
+          // Cancel the default action
+          event.preventDefault();
+          // Trigger the button element with a click
+          document.getElementById("buttonNumberWang").click();
+        }
+      };
+
+      function numberWang() {
+
+        // get inputted number
+        var inputNumber = document.getElementById('inputFloatingNumber').value;
+
+        // validate field is filled out
+        var regexFloatingNumber = RegExp(/-?\d*\.\d{4,}/);
+
+        if ( regexFloatingNumber.test(inputNumber) === false ) {
+          console.log('Invalid number format.');
+          // put focus back on input field
+          document.getElementById('inputFloatingNumber').focus();
+          return;
+
+        } else {
+            // NumberWang
+            var parsedInputNumber = parseFloat(inputNumber);
+            var roundedTenth = Math.floor(parsedInputNumber * 10 + .5) / 10;
+            var roundedHundredth = Math.floor(parsedInputNumber * 100 + .5) / 100;
+            var roundedThousandth = Math.floor(parsedInputNumber * 1000 + .5) / 1000;
+
+            document.getElementById('outputOriginalNumber').innerHTML = "Original number: " + inputNumber;
+            document.getElementById('outputRoundedInteger').innerHTML = "Rounded to nearest integer: " + Math.round(parsedInputNumber);
+            document.getElementById('outputRoundedTenth').innerHTML = "Rounded to nearest tenth: " + roundedTenth.toFixed(1);
+            document.getElementById('outputRoundedHundredth').innerHTML = "Rounded to nearest hundredth: " + roundedHundredth.toFixed(2);
+            document.getElementById('outputRoundedThousandth').innerHTML = "Rounded to nearest thousandth: " + roundedThousandth.toFixed(3);
+            document.getElementById('outputSquareRootRoundedInteger').innerHTML = "Square root, rounded to nearest integer: " + Math.round(Math.sqrt(parsedInputNumber));
+
+            // put focus back on input field
+            document.getElementById('formFloatingNumber').elements['inputFloatingNumber'].focus();
+          }
+
+      } // end function numberWang
+
+    } // end all
+
+  </script>
+
+</head>
+
+<body>
+
+  <header class="container">
+    <h1>CNIT 133 Homework 6: Objects</h1>
+    <ul>
+      <li>
+        Part 1: Math
+      </li>
+      <li>
+        <a href="hw6-2.html">
+          Part 2: Search Text
+        </a>
+      </li>
+      <li>
+        <a href="hw6-3.html">
+          Part 3: Data Formatting
+        </a>
+      </li>
+    </ul>
+  </header>
+
+  <main class="container">
+
+    <h2>Part 1: Math</h2>
+
+    <section class="flex">
+
+      <div class="half">
+        <form id="formFloatingNumber">
+          <label for="inputFloatingNumber">Number</label>
+          <input type="text" id="inputFloatingNumber" name="inputFloatingNumber" placeholder="0.0000" value="0.0000" pattern="-?\d*\.\d{4,}" required autofocus>
+          <div class="errorMessage" id="error-for-inputFloatingNumber">&#x26a0; Please enter a number with at least 4 decimal positions.</div>
+          <button id="buttonNumberWang" type="button" class="primary">NumberWang</button>
+        </form>
+      </div>
+
+      <div class="half callout">
+        <h4>Results:</h4>
+
+        <ul id="stateInfo">
+          <li id="outputOriginalNumber">
+            Original number:
+          </li>
+          <li id="outputRoundedInteger">
+            Rounded to nearest integer:
+          </li>
+          <li id="outputRoundedTenth">
+            Rounded to nearest tenth:
+          </li>
+          <li id="outputRoundedHundredth">
+            Rounded to nearest hundredth:
+          </li>
+          <li id="outputRoundedThousandth">
+            Rounded to nearest thousandth:
+          </li>
+          <li id="outputSquareRootRoundedInteger">
+            Square root, rounded to nearest integer:
+          </li>
+        </ul>
+      </div>
+
+    </section>
+
+<!--     <section>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/ZH-cXBhkl-E?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </section> -->
+
+  </main>
+
+</body>
+</html>

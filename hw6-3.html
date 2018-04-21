@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Homework 6, Part 3: Data Formatting</title>
+  
+  <meta name="description" content="Katie Riley's CNIT 133 Homework 6: Objects">
+
+  <link href="./resources/css/reset.css" type="text/css" rel="stylesheet">
+  <link href="./resources/css/style.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+  <script type="text/javascript"> 
+
+    window.onload = function () {
+
+      // SECTION: Create date & time statements
+
+          var currentDate = new Date();
+
+          var timezoneOffsetHours = currentDate.getTimezoneOffset() / 60;
+          var PDTtoUTC = timezoneOffsetHours; // assumes user is in PDT; 7 hours behind UTC
+          var EDTtoUTC = timezoneOffsetHours - 3; // 4 hours behind UTC
+
+          function outputTimezoneOffset(hours) {
+            // the offset is negative if the local timezone is ahead of UTC
+            if (hours < 0) {
+              if (hours === -1) {
+                return Math.abs(hours) + ' hour ahead of UTC.';
+              } else {
+                  return Math.abs(hours) + ' hours ahead of UTC.';
+                }
+
+              // the offset is positive if the local timezone is behind UTC
+            } else if (hours > 0) {
+                if (hours === 1) {
+                  return hours + ' hour behind UTC.';
+                } else {
+                    return hours + ' hours behind UTC.';
+                  }
+
+              } else {
+                  return 'equal to UTC.'
+                }
+          }
+
+          document.getElementById('dateToString').insertAdjacentHTML('beforeend', '<pre>' + currentDate.toString() + '</pre>');
+          document.getElementById('dateToLocaleString').insertAdjacentHTML('beforeend', '<pre>' + currentDate.toLocaleString() + '</pre>');
+          document.getElementById('dateToUTCString').insertAdjacentHTML('beforeend', '<pre>' + currentDate.toUTCString() + '</pre>');
+          document.getElementById('datePDT').insertAdjacentHTML('beforeend', '<pre>PDT is ' + outputTimezoneOffset(PDTtoUTC) + '</pre>');
+          document.getElementById('dateEDT').insertAdjacentHTML('beforeend', '<pre>EDT is ' + outputTimezoneOffset(EDTtoUTC) + '</pre>');
+
+
+      // SECTION: Convert phone number
+
+          // Define button behavor
+          document.getElementById("buttonSplitPhoneNumber").onclick = functionSplitPhoneNumber;
+
+          // Define "Enter" behavior
+          document.getElementById('inputPhoneNumber').onkeydown = function(event) {
+            // 13 = "Enter" key
+            if (event.keyCode === 13) {
+              // Cancel the default action
+              event.preventDefault();
+              // Trigger the button element with a click
+              document.getElementById("buttonSplitPhoneNumber").click();
+            }
+          };
+
+          function functionSplitPhoneNumber() {
+
+            // get input phone number
+            var inputPhoneNumber = document.getElementById('inputPhoneNumber').value;
+
+            // validation
+            var regexPhoneNumber = RegExp(/\((\d{3})\)\s(\d{3})-(\d{4})/);
+
+            if ( regexPhoneNumber.test(inputPhoneNumber) === false ) {
+              console.log('Invalid phone number format.');
+              return;
+            } else {
+                // split phone number
+                var areaCode = inputPhoneNumber.slice(0, 5);
+                var phoneNumberPart1 = inputPhoneNumber.slice(5, 9);
+                var phoneNumberPart2 = inputPhoneNumber.slice(-4);
+
+                // show phone number results
+                document.getElementById('areaCode').innerHTML = areaCode;
+                document.getElementById('phoneNumber').innerHTML = phoneNumberPart1 + "-" + phoneNumberPart2;
+              }
+
+          } // end functionSplitPhoneNumber
+
+    } // end all
+  </script>
+
+
+</head>
+
+<body>
+
+  <header class="container">
+    <h1>CNIT 133 Homework 6: Objects</h1>
+    <ul>
+      <li>
+        <a href="hw6-1.html">
+          Part 1: Math
+        </a>
+      </li>
+      <li>
+        <a href="hw6-2.html">
+          Part 2: Search Text
+        </a>
+      </li>
+      <li>
+        Part 3: Data Formatting
+      </li>
+    </ul>
+  </header>
+
+  <main class="container">
+
+    <h2>Part 3: Data Formatting</h2>
+
+    <section class="flex">
+      <div class="half">
+        <h4>Dates:</h4>
+        <ul>
+          <li id="dateToString">
+            toString(): 
+          </li>
+          <li id="dateToLocaleString">
+            toLocaleString():
+          </li>
+          <li id="dateToUTCString">
+            toUTCString():
+          </li>
+          <li id="datePDT">
+            PDT vs. UTC: 
+          </li>
+          <li id="dateEDT">
+            EDT vs. UTC: 
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="flex">
+      <div class="half">
+
+        <form id="formPhoneNumber">
+          <label for="inputPhoneNumber">Phone numbers:</label>
+          <input type="tel" id="inputPhoneNumber" name="inputPhoneNumber" 
+          placeholder="(999) 999-9999" value="(999) 999-9999" required 
+          pattern="\((\d{3})\)\s(\d{3})-(\d{4})" 
+          aria-label="10-digit phone number in format (999) 999-9999"
+          title="10-digit phone number in format (999) 999-9999">
+          <div class="errorMessage" id="error-for-inputPhoneNumber">&#x26a0; Please enter a 10-digit phone number in format (999) 999-9999.</div>
+          <button id="buttonSplitPhoneNumber" type="button" class="primary">Split phone number</button>
+        </form>
+
+      </div>
+
+      <div class="half callout">
+        <h4>Results:</h4>
+        <ul>
+          <li>
+            Area code: <span id="areaCode"></span>
+          </li>
+          <li>
+            Seven-digit phone number: <span id="phoneNumber"></span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
