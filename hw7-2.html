@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Homework 7, Part 2: Top Navigation Bar</title>
+  
+  <meta name="description" content="Katie Riley's CNIT 133 Homework 7: Object Model and Miscellaneous jQuery">
+
+  <link href="./resources/css/reset.css" type="text/css" rel="stylesheet">
+  <link href="./resources/css/style.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i" rel="stylesheet">
+
+<!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+
+      // $(".headerBar__item").hover(function () {
+
+      //     var headerBar__item = $(this);
+      //     var headerBar__dropdown = headerBar__item.next(".headerBar__dropdown");
+
+      //     // headerBar__item.attr("aria-expanded","true");
+      //     headerBar__dropdown.slideDown();
+      // }); // end mouseover function
+
+      $( ".headerBar__item" ).hover(
+        function() {
+          var headerBar__item = $(this);
+          var headerBar__dropdown = headerBar__item.next(".headerBar__dropdown");
+          headerBar__dropdown.slideDown('fast');
+
+        }, function() {
+          var headerBar__item = $(this);
+          var headerBar__dropdown = headerBar__item.next(".headerBar__dropdown");
+          headerBar__dropdown.slideUp('fast');
+        }
+      );
+
+      // $(".headerBar__item").mouseout(function () {
+
+      //     var headerBar__item = $(this);
+      //     var headerBar__dropdown = headerBar__item.next(".headerBar__dropdown");
+
+      //     headerBar__item.attr("aria-expanded","false");
+      //     headerBar__dropdown.slideUp();
+      // }); // end mouseover function
+
+
+    }); // end ready
+  </script> -->
+
+</head>
+
+<body>
+
+  <!-- Begin header bar -->
+  <nav class="headerBar" role="navigation">
+    <ul>
+      <li>
+        <a href="index.html">Homework 1</a>
+      </li>
+
+      <li>
+        <a href="hw2.html" class="headerBar__item" aria-haspopup="true" aria-expanded="false">Homework 2</a>
+        <ul class="headerBar__dropdown" aria-label="submenu">
+          <li>
+            <a href="hw2-1.html">Part 1: document.write Statements</a>
+          </li>
+          <li>
+            <a href="hw2-2.html">Part 2: Input Three Integers</a>
+          </li>
+          <li>
+            <a href="hw2-3.html">Part 3: jQuery</a>
+          </li>
+          <li>
+            <a href="hw2-4.html">Part 4: Calculation Table</a>
+          </li>
+          <li>
+            <a href="hw2-ec.html">Extra Credit: Exchange Rates</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="hw3.html" class="headerBar__item" aria-haspopup="true" aria-expanded="false">Homework 3</a>
+        <ul class="headerBar__dropdown" aria-label="submenu">
+          <li>
+            <a href="hw3-1.html">Part 1: Student Grades</a>
+          </li>
+          <li>
+            <a href="hw3-2.html">Part 2: Salesperson Earnings</a>
+          </li>
+          <li>
+            <a href="hw3-3.html">Part 3: Temperature Conversion</a>
+          </li>
+          <li>
+            <a href="hw3-4.html">Part 4: Multiplication Education</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="hw4.html" class="headerBar__item" aria-haspopup="true" aria-expanded="false">Homework 4</a>
+        <ul class="headerBar__dropdown" aria-label="submenu">
+          <li>
+            <a href="hw4-1.html">Part 1: Integer Calculation Loops</a>
+          </li>
+          <li>
+            <a href="hw4-2.html">Part 2: Calculate Compound Interest</a>
+          </li>
+          <li>
+            <a href="hw4-3.html">Part 3: Retail Sales</a>
+          </li>
+          <li>
+            <a href="hw4-ec.html">Extra Credit: Draw a Square</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="hw5.html" class="headerBar__item" aria-haspopup="true" aria-expanded="false">Homework 5</a>
+        <ul class="headerBar__dropdown" aria-label="submenu">
+          <li>
+            <a href="hw5-1.html">Part 1: Mixed Input Form</a>
+          </li>
+          <li>
+            <a href="hw5-2.html">Part 2: Pulldown Menus</a>
+          </li>
+          <li>
+            <a href="hw5-3.html">Part 3: State Information</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="hw6.html" class="headerBar__item" aria-haspopup="true" aria-expanded="false">Homework 6</a>
+        <ul class="headerBar__dropdown" aria-label="submenu">
+          <li>
+            <a href="hw6-1.html">Part 1: Math</a>
+          </li>
+          <li>
+            <a href="hw6-2.html">Part 2: Search Text</a>
+          </li>
+          <li>
+            <a href="hw6-3.html">Part 3: Data Formatting</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="hw7.html" class="headerBar__item" aria-haspopup="true" aria-expanded="false">Homework 7</a>
+        <ul class="headerBar__dropdown" aria-label="submenu">
+          <li>
+            <a href="hw7-1.html">Part 1: Page Layout and Formatting</a>
+          </li>
+          <li>
+            <a href="hw7-2.html">Part 2: Top Navigation Bar</a>
+          </li>
+          <li>
+            <a href="hw7-3.html">Part 3: Photo Slideshow</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <!-- End header bar -->
+
+  <header class="container">
+    <h1>CNIT 133 Homework 7: Object Model and Miscellaneous jQuery</h1>
+
+<!--     <nav>
+      <ul>
+        <li>
+          <a href="hw7-1.html">
+            Part 1: Page Layout and Formatting
+          </a>
+        </li>
+        <li>
+          <a href="hw7-2.html">
+            Part 2: Top Navigation Bar
+          </a>
+        </li>
+        <li>
+          <a href="hw7-3.html">
+            Part 3: Photo Slideshow
+          </a>
+        </li>
+      </ul>
+    </nav> -->
+
+  </header>
+
+  <main class="container">
+    <h2>Part 2: Top Navigation Bar</h2>
+  </main>
+
+</body>
+</html>

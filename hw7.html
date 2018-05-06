@@ -11,13 +11,63 @@
   <link href="./resources/css/reset.css" type="text/css" rel="stylesheet">
   <link href="./resources/css/style.css" type="text/css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('.showHide__itemDescription').hide();
+
+      $(".showHide__itemTitle").click(function () {
+
+          var itemTitle = $(this);
+          var itemDescription = itemTitle.next(".showHide__itemDescription");
+
+          if (itemDescription.css("display") == "none") {
+            itemTitle.addClass("showHide__itemTitle--expanded");
+            itemTitle.attr("aria-expanded","true");
+            itemDescription.slideDown();
+          } else {
+              itemTitle.removeClass("showHide__itemTitle--expanded");
+              itemTitle.attr("aria-expanded","false");
+              itemDescription.slideUp();
+            }
+      }); // end click function
+    }); // end ready
+  </script>
+
 </head>
 
 <body>
 
   <main class="container">
 
-    <h1>Homework 7: Object Model and Miscellaneous jQuery</h1>
+    <h1>CNIT 133 Homework 7: Object Model and Miscellaneous jQuery</h1>
+
+    <nav>
+      <ul>
+        <li>
+          <a href="#0" class="showHide__itemTitle" role="button" aria-expanded="false">Part 1: Page Layout and Formatting</a>
+          <p class="showHide__itemDescription">
+            Create a webpage that allows the user to change the background color, font size, 
+            font family, font style, and font weight using the className property. <a href="hw7-1.html">View Part 1</a>
+          </p>
+        </li>
+        <li>
+          <a href="#0" class="showHide__itemTitle" role="button" aria-expanded="false">Part 2: Top Navigation Bar</a>
+          <p class="showHide__itemDescription">
+            Write a script that displays a top navigation bar containing links to homework assignments. 
+            Display drop-down menus on mouseover. <a href="hw7-2.html">View Part 2</a>
+          </p>
+        </li>
+        <li>
+          <a href="#0" class="showHide__itemTitle" role="button" aria-expanded="false">Part 3: Photo Slideshow</a>
+          <p class="showHide__itemDescription">
+            Create a photo slide-show using jQuery. <a href="hw7-3.html">View Part 3</a>
+          </p>
+        </li>
+      </ul>
+    </nav>
 
   </main>
 
